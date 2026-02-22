@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoPrint</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app">
+    <header>
+      <h1>EcoPrint</h1>
+      <p>PDF Ink Utility</p>
+    </header>
+
+    <main>
+      <section class="control">
+        <label>Source Document</label>
+        <div class="field">
+          <span id="file-name">No file loaded</span>
+          <button onclick="window.pywebview.api.select_input()">Select</button>
+        </div>
+      </section>
+
+      <section class="control">
+        <label>Ink Balance Profile</label>
+        <div class="profiles">
+          <button class="profile-btn active" onclick="setHue(0.16, this)">
+            <span class="preview yellow"></span>
+            <span class="target-label">Yellow Base</span>
+          </button>
+          <button class="profile-btn" onclick="setHue(0.0, this)">
+            <span class="preview red"></span>
+            <span class="target-label">Red Base</span>
+          </button>
+          <button class="profile-btn" onclick="setHue(0.66, this)">
+            <span class="preview blue"></span>
+            <span class="target-label">Blue Base</span>
+          </button>
+        </div>
+      </section>
+
+      <button id="run-btn" class="run-btn" onclick="run()">PROCESS</button>
+    </main>
+
+    <footer id="footer">
+      <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      <div id="status" class="status">System Ready</div>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
