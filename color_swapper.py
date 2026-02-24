@@ -49,7 +49,7 @@ class API:
 
                 new_page = out.new_page(width=page.rect.width, height=page.rect.height)
                 buf = BytesIO()
-                img.save(buf, format='PNG')
+                img.save(buf, format='JPEG', quality=80)
                 new_page.insert_image(page.rect, stream=buf.getvalue())
 
                 text_data = page.get_text("dict")
@@ -61,7 +61,7 @@ class API:
 
             final_name = "ecoprint_" + os.path.basename(self.input_file)
             final_path = os.path.join(self.output_dir, final_name)
-            out.save(final_path)
+            out.save(final_path, garbage=4, deflate=True)
             self.window.evaluate_js(f"onComplete('COMPLETED: {final_name}')")
         except Exception as e:
             self.window.evaluate_js(f"onError('{str(e)}')")
